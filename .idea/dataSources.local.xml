@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="Times MySQL dev Amazon RDS" uuid="2f75f0e5-a958-462c-963b-19b13f48f23b" />
+    <data-source name="MySQL  Local-Rails VQE_v2: Test" uuid="bf763fea-a385-4175-9bfa-e0fe5d738788" />
+    <data-source name="Local MySQL Development- video_quote@127.0.0.1" uuid="4c61885d-adcb-40fe-b58c-8764a4f7540c" />
+    <data-source name="Heroku db PostgreSQL" uuid="5617ca1e-c11e-4fce-ab1a-805b27de0292" />
+    <data-source name="quickQuote Amazon RDS MySQL" uuid="90d15ef7-3349-48e4-8da0-34178cd97586" />
+    <data-source name="MySQL - d6ucil3r8n5n59?sslmode=require@ec2-54-83-59-154.compute-1.amazonaws.com" uuid="c06a07a5-d557-4c07-bb15-78c52dc8a14f" />
+  </component>
+</project>
