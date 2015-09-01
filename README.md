@@ -141,7 +141,20 @@ dividing by production and development.
 $ bundle exec figaro install
 ```
 
-creates the `config/application.yml`  and adds it to `.gitingore`.
+adds to  `config/application.yml`  and adds it to `.gitingore`.
+
+```
+# Ignore application configuration
+/config/application.yml
+```
+
+However, what you want to do is to remove the `/` like so
+
+```
+# Ignore application configuration
+config/application.yml
+```
+Otherside you might accidentally deploy your enviroment variables.
 
 <!-- uses the Figaro gem https://github.com/laserlemon/figaro  -->
 you can use the following template to fill in the details in `config/application.yml`

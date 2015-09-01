@@ -27,5 +27,3 @@ config/application.yml
 
 #.ec2/
 #config/rubber/rubber.yml
-# Ignore application configuration
-/config/application.yml
