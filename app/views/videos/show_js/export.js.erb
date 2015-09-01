@@ -1,0 +1,59 @@
+/**
+ * Function triggered when clicking the export button on the page
+ * gets information about the quote, author, text, input, output, duration, from selection form fields.
+ * makes ajax request to save quote and get video trimmed by controller
+ * uses url of video trimmed returned by the controller to build a text area to display code to embed the quote.
+ * first part of embed code is kept in insivible text area, to have it human readable format,
+ * for ease of access for modifications
+ * second part is string interpolated with result of ajax request.
+ * */
+
+$("#export").click(function(){
+// read select quote input fields of form, and makes ajax request to save quotes
+// ajax to save quotes
+    var $btn = $(this).button('loading');
+
+    $TCIN =  $("#input").val();
+    $TCOUT= $("#output").val();;
+    $duration =$("#duration").val() ;
+    $author = $("#author").val();
+    $textQuote =$("#textQuote").val();
+    $dataToSend = {video_id: <%= @video.id %> , tc_in: $TCIN , tc_out: $TCOUT, duration: $duration, text: $textQuote, author: $author} ;
+
+    var currentUrl =  window.location.origin;
+
+      $.ajax({
+          type: 'POST',
+          // dataType: 'script',
+          url: currentUrl +'/save_quote/',
+          data: { "quoteDetails" : JSON.stringify($dataToSend)},
+          dataType: 'json',
+          async: true
+      }).done(function(data){
+
+          //resets text area export
+          $("#textAreaExport").val(" ");
+          //url received from ajax response
+          $url = data["response"];
+          // top part of embed code kept in invisible textarea
+          $top = $("#textAreaExportTemplate").val();
+          $blockQuote =  $textQuote;
+
+          //String interpolation building up second part of embed code
+          $authorQuote = "<br><cite id='authorVideoQuote'>"+ $author +"</cite></blockquote></div>";
+          $videoPart1 = "<div  id='video-wrap-n' class='video-wrap video-wrap--closed'><video class=' video-js vjs-default-skin' id='video-quote' controls preload='auto' width='100%' height='auto' poster='' data-setup='{}'><source src='";
+          $videoPart2 ="' id='snippetURLVideo' type='video/mp4' /></video></div>";
+
+          //updating text area in export modal with string interpolated embed code
+          $("#textAreaExport").val( $top + $blockQuote + $authorQuote +$videoPart1 +$url+ $videoPart2 );
+          //updating other parts of export modal with individual quote details
+          $("#snippetURL").text($url);
+          $("#quoteText").val($textQuote);
+          $("#quoteAuthor").val($author);
+
+          // resetting export button loading animation
+          $btn.button('reset');
+          // triggering/opening export modal
+          $('#exportModal').modal('toggle');
+    });
+});

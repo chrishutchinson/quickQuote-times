@@ -1,0 +1,112 @@
+/* *
+ * Functions that make up the hyperTranscript component interactivity
+ * - Initialising the video player
+ * - make the words of the transcript clicckable through clicckable span tags
+ * - change color of words relative to playhead position
+ * - sync scroll text with playhead position
+ * */
+
+//video js
+var player = videojs('video_player');
+player.ready(function(){
+    console.log('Player ready');
+    // this.play();
+    // this.payse();
+//      this.hotkeys({
+//          volumeStep: 0.1,
+//          seekStep: 5,
+//          enableMute: true,
+//          enableFullscreen: true,
+//          enableNumbers: true,
+//      });
+});//video js
+
+//make text spans clickable
+clickableSpans();
+
+
+//Function to make the span tags clickable,
+// When clicking the text it takes the user to the corresponding part in the video.
+function clickableSpans() {
+    videojs('video_player').play();
+    videojs('video_player').pause();
+    $("span").click(function(){
+        //get the time attribute of span tag, which is the time for that word/sentence in seconds
+        var time = $(this).attr('tcin');
+        //sets current time of player
+        videojs('video_player').currentTime(time);
+        //sets play to current player
+        videojs('video_player').play();
+    });//end span JQuery $("span").click
+}// end of clickable Spans function.
+
+
+//event listener time update for video playhead. when video is playing do
+player.on('timeupdate', function() {
+    //gets current time from video
+    var currentTimeInSeconds =  this.currentTime();
+    //hilights text as video playes.
+    colorHilightOnPlay(currentTimeInSeconds);
+    // scroll to text to equivalent playhead position
+    scrollText(currentTimeInSeconds);
+});
+
+// Function to hilight the text according to whether corresponds to before or after the current playhead.
+function colorHilightOnPlay(currentTimeInSeconds){
+    //get all the spans in the transcription div
+    var spans = $("#transcription").find("span");
+    //if we are not at the very beginning or the player has not started.
+    if (currentTimeInSeconds !== 0 ){
+        //for every span element
+        for (var i=0 ; i<spans.length; i++){
+            //get the span time of each element
+            var spanTime = spans[i].getAttribute("tcin");
+            //compare span element time against the current time
+            if (spanTime < currentTimeInSeconds){
+                // if it is less then the current time, make text black by changing read / not-read class
+                $( spans[i] ).toggleClass( "not-read",false );
+                $( spans[i] ).toggleClass( "read",true );
+            }else {
+                // otherwise do the opposite
+                $( spans[i] ).toggleClass( "not-read",true );
+                $( spans[i] ).toggleClass( "read",false );
+            }//if else
+        }//for
+    }//if
+}
+
+//function to sync the text scroll in the transcription div with the playhead position.
+function scrollText(currentTimeInSeconds){
+//if we are not at the beginning of the video or the video as not started
+    if (currentTimeInSeconds !== 0 ){
+        //to grab the current span
+        //NB the granularity at which video js gives you current time, would struggle to give you a much using decimal places.
+        //get the floor of the current Time, eliminate decimal places, to make comparison easier with span m time attributes
+        var currenTimeFloor = Math.floor(currentTimeInSeconds);
+        //make an array of all the times attribute in the span tags
+        var mSpanTimesArray = $("#transcription").find("span").map(function(){return $(this).attr("tcin");}).get();
+        //for that array remove decimal places, to make an easier comparison with current time number,
+        var mSpanTimesArrayFloor = $.map( mSpanTimesArray, function( a ) {
+            return Math.floor(a);
+        });
+
+        //if currenTimeFloor in array of spans time floor
+        if ($.inArray(currenTimeFloor, mSpanTimesArrayFloor) !== -1){
+            //get spans time with decimal places using currenTimeFloor inArray of spans time floor ->returns index
+            var index = $.inArray(currenTimeFloor, mSpanTimesArrayFloor);
+            //use the index to get the current span m time attribute.
+            var currentSpanTime  = mSpanTimesArray[index];
+            //using the current span time to find the span in the transcription
+            //using `.position()` to get position attribute
+            //calling top to get distance
+            var current = $('#transcription').find("span[tcin='"+currentSpanTime+"']").position().top;
+            //div transcription is set to scroll in css
+            //scrollTop() can take argument of where to scroll it to.
+            //scrollTop() without argument returns current position
+            // adding current span top position to transcription div position moves transcription scroll to current line
+            $('#transcription').scrollTop($('#transcription').scrollTop() + current);
+        }//if array
+    }//!==0
+}
+
+

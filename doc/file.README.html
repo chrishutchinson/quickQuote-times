@@ -1,0 +1,389 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>
+  File: README
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!file.README.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><div id='filecontents'><h1>Welcome To quickQuote Documentation!</h1>
+
+<p>This site covers quickQuote’s documentation. For basic info on what quickQuote is, as well as a live demo, and user manual please see the main project website - <a href="http://times.github.io/quickQuote">times.github.io/quickQuote </a>
+.</p>
+
+<h1>System Manual</h1>
+
+<p>Here is a step by step plan on how to install quickQuote. It will get you to a point of having a deployed instance on Heroku.</p>
+
+<h2>Prerequisite</h2>
+
+<p>You will need to have the following installed</p>
+
+<ul>
+<li>ruby</li>
+<li>ruby on rails</li>
+<li>Git
+
+<ul>
+<li>Git installed locally</li>
+<li>Github</li>
+</ul></li>
+<li>Heroku
+
+<ul>
+<li>Heroku account</li>
+<li>Heroku installed locally</li>
+</ul></li>
+<li>ffmpeg (for running development version locally)</li>
+<li>MySql
+
+<ul>
+<li>MySql</li>
+<li>Sequel Pro</li>
+</ul></li>
+</ul>
+
+<p>Showing how to install these is behiond the scope of this system manual.</p>
+
+<!--  but if you follow the links, they will take you to the project wiki where there are more detailed resources on each-->
+
+<!-- Vagrant virtual machine with al specific versions, script with configuration -->
+
+<h2> System dependencies</h2>
+
+<p>a list of most relevant system dependencies</p>
+
+<ul>
+<li>ruby version 2.0.0</li>
+<li>rails version 4.2.0</li>
+<li>ffmpeg version 2.7.1
+
+<ul>
+<li>--enable-shared</li>
+<li>--enable-pthreads</li>
+<li>--enable-gpl</li>
+<li>--enable-version3</li>
+<li>--enable-hardcoded-tables</li>
+<li>--enable-avresample</li>
+<li>--cc=clang</li>
+<li>--host-cflags=</li>
+<li>--host-ldflags=</li>
+<li>--enable-libx264</li>
+<li>--enable-libmp3lame</li>
+<li>--enable-libvo-aacenc</li>
+<li>--enable-libxvid</li>
+<li>--enable-libvorbis</li>
+<li>--enable-libvpx</li>
+<li>--enable-vda</li>
+</ul></li>
+<li>Video js 4.12.8 <em>cdn</em></li>
+<li>jquery 3.0.0-alpha1 <em>cdn</em></li>
+<li>bootswatch paper bootstrap.min.css 3.3.5 <em>cdn</em></li>
+<li>ajax jquery 1.11.2 <em>cdn</em></li>
+<li>bootstrap js 3.3.5 <em>cdn</em></li>
+</ul>
+
+<p>see <code>Gemfile</code> for list of rails gem dependencies.</p>
+
+<h2>Configuration</h2>
+
+<h3>API keys</h3>
+
+<p>You&#39;ll need to make the following accounts to get the API keys</p>
+
+<ul>
+<li>amazon S3
+
+<ul>
+<li>production</li>
+<li>development</li>
+</ul></li>
+<li>spoken data API
+
+<ul>
+<li>production</li>
+<li>development</li>
+</ul></li>
+<li>Google API
+
+<ul>
+<li>production</li>
+<li>development</li>
+</ul></li>
+<li>local mysql database for testing - <em>optional</em></li>
+</ul>
+
+<p>If not using Heroku, but deploying Heroku style, for instance on Deis, you&#39;ll also need a separate database. <em>optional</em></p>
+
+<ul>
+<li>amazon RDS
+
+<ul>
+<li>production</li>
+<li>development</li>
+</ul></li>
+</ul>
+
+<h4>spoken data</h4>
+
+<p>Getting two API keys for spoken data requires two email address to make two distinct account(or 3 if you want only for testing), if you prefer you can just use one account for production and development, but I&#39;d advise against as it can get messy quickly if you try to distinguish on their dashboard which videos you uploaded in development and which once are your users.</p>
+
+<h4>Google API key</h4>
+
+<p>In the Google developer console, create a new project, and get the client id and client secret.</p>
+
+<p>and <strong>enable Google+</strong>.</p>
+
+<p>You&#39;ll also Also setup a call back URI, such as</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_http'>http</span><span class='symbol'>:/</span><span class='op'>/</span><span class='id identifier rubyid_name_of_your_application'>name_of_your_application</span><span class='period'>.</span><span class='id identifier rubyid_herokuapp'>herokuapp</span><span class='period'>.</span><span class='id identifier rubyid_com'>com</span><span class='op'>/</span><span class='id identifier rubyid_auth'>auth</span><span class='op'>/</span><span class='id identifier rubyid_google_oauth2'>google_oauth2</span><span class='op'>/</span><span class='id identifier rubyid_callback'>callback</span>
+</code></pre>
+
+<p>You&#39;ll need a URI for the deployed application and one for development. 
+Google does not support adding localhost, so you&#39;ll need to setup a custom local url.
+explained below</p>
+
+<h5>Local domain name for use in development</h5>
+
+<p>For use during developemeant it requires to setup a local DNS for your local  host address that maps to your localhost.</p>
+
+<p>In terminal</p>
+
+<pre class="code bash"><code class="bash">$ sudo nano /etc/hosts
+</code></pre>
+
+<p>in the <code>hosts</code> file</p>
+
+<pre class="code ruby"><code class="ruby">127.0.0.1   localhost   **your  local domain name**.com
+</code></pre>
+
+<p>You can use same details for development and testing.
+This needs to be added to the Google Console API as the redirect URL.
+so that  in <code>config/application.yml</code> you can set the environment variable to be:</p>
+
+<pre class="code html"><code class="html">REDIRECT_URIS: &#39;http://**your local domain name**.com:3000/auth/google_oauth2/callback&#39;
+</code></pre>
+
+<p><strong>testing</strong> <em>optional</em> you might want to get a dummy gmail address without step two authentication to use for selenium testing.
+you can use one of the once used in .</p>
+
+<h3>add API Keys to project</h3>
+
+<p>we are using the <a href="https://github.com/laserlemon/figaro">figaro gem</a> to deploy our environment variables onto Heroku.
+add API keys to a file <code>config/application.yml</code></p>
+
+<p>dividing by production and development.</p>
+
+<!-- In the project folder there's a file called `config/loval_env.yml.md` you can change the extension back to `yml` by removing `.md` from the file name, and use it as a template to add your API keys to the project-->
+
+<!--  or use figaro and add them to `config/application.yml`  -->
+
+<pre class="code ruby"><code class="ruby">$ bundle exec figaro install
+</code></pre>
+
+<p>creates the <code>config/application.yml</code>  and adds it to <code>.gitingore</code>.</p>
+
+<!-- uses the Figaro gem https://github.com/laserlemon/figaro  -->
+
+<p>you can use the following template to fill in the details in <code>config/application.yml</code></p>
+
+<pre class="code ruby"><code class="ruby">GOGLE_PROJECT_ID: &#39;&#39;
+
+test:
+  #Google Project ID, OAuth 2.0 client ID:
+  GOOGLE_CLIENT_ID_DEVELOPMENT: &#39;&#39;
+  GOOGLE_CLIENT_SECRET_DEVELOPMENT: &#39;&#39;
+  REDIRECT_URIS: &#39;http://your_local_domain.com:3000/auth/google_oauth2/callback&#39;
+  JAVASCRIPT_ORIGINS:  &#39;https://www.example.com&#39;
+  #MysQL db - Local
+  DB_TEST_USERNAME: &#39;root&#39;
+  DB_TEST_PASSWORD: &#39;&#39;
+  DB_TEST_DB: &#39;&#39;
+  DB_TEST_END_POINT: &#39;127.0.0.1&#39;
+  DB_TEST_PORT: &#39;3306&#39;
+  #S3 Bucket
+  AMAZON_S3_ACCESS_KEY_ID: &#39;&#39;
+  AMAZON_S3_SECRET_ACCESS_KEY: &#39;&#39;
+  AMAZON_S3_BUCKET: &#39;&#39;
+  #Spoken Data API
+  SPOKEN_DATA_USER_ID: &#39;&#39;
+  SPOKEN_DATA_API_TOKEN: &#39;&#39;
+
+development:
+  #Google Project ID, OAuth 2.0 client ID:
+  GOOGLE_CLIENT_ID_DEVELOPMENT: &#39;&#39;
+  GOOGLE_CLIENT_SECRET_DEVELOPMENT: &#39;&#39;
+  REDIRECT_URIS: &#39;http://your_local_domain.com:3000/auth/google_oauth2/callback&#39;
+  JAVASCRIPT_ORIGINS:  &#39;https://www.example.com&#39;
+  #MysQL db - Amazon RDS
+  RDS_USERNAME_DEVELOPMENT: &#39;&#39;
+  RDS_PASSWORD_DEVELOPMENT: &#39;&#39;
+  RDS_DB_DEVELOPMENT: &#39;&#39;
+  RDS_END_POINT_DEVELOPMENT: &#39;&#39;
+  RDS_PORT_DEVELOPMENT: &#39;&#39;
+  #S3 Bucket
+  AMAZON_S3_ACCESS_KEY_ID: &#39;&#39;
+  AMAZON_S3_SECRET_ACCESS_KEY: &#39;&#39;
+  AMAZON_S3_BUCKET: &#39;&#39;
+  #Spoken Data API
+  SPOKEN_DATA_USER_ID: &#39;&#39;
+  SPOKEN_DATA_API_TOKEN: &#39;&#39;
+
+production:
+  #Google Project ID, OAuth 2.0 client ID:
+  GOOGLE_CLIENT_ID: &#39;&#39;
+  GOOGLE_CLIENT_SECRET: &#39;&#39;
+  REDIRECT_URIS: &#39;http://the_name_of_your_app.herokuapp.com/auth/google_oauth2/callback&#39;
+  JAVASCRIPT_ORIGINS:  &#39;&#39;
+  #MysQL db - Amazon RDS
+  RDS_USERNAME: &#39;&#39;
+  RDS_PASSWORD: &#39;&#39;
+  RDS_DB: &#39;&#39;
+  RDS_END_POINT: &#39;&#39;
+  RDS_PORT: &#39;&#39;
+  #S3 Bucket
+  AMAZON_S3_ACCESS_KEY_ID: &#39;&#39;
+  AMAZON_S3_SECRET_ACCESS_KEY: &#39;&#39;
+  AMAZON_S3_BUCKET: &#39;&#39;
+  #Spoken Data API
+  SPOKEN_DATA_USER_ID: &#39;&#39;
+  SPOKEN_DATA_API_TOKEN: &#39;&#39;
+</code></pre>
+
+<h2>How to run the test suite</h2>
+
+<p>There is a selenium script to programmatically test login and file upload.</p>
+
+<p>To run it from root of the application use the following comand</p>
+
+<pre class="code bash"><code class="bash">$ ruby /test/selenium/selenium_test_video_upload.rb
+</code></pre>
+
+<h2>Database creation -  for local developement and testing.</h2>
+
+<p>This can be used for testing as well.</p>
+
+<ul>
+<li><a href="https://dev.mysql.com/doc/refman/5.6/en/osx-installation-pkg.html">Install mysql locally <em>os x</em> </a></li>
+<li>To start the server <em>System preferences &gt; MySQL &gt; Start MySQL Server</em></li>
+<li>Use <a href="http://www.sequelpro.com/">Squel Pro</a> (or equivalent) to connect to the local MySQL db server.</li>
+</ul>
+
+<pre class="code ruby"><code class="ruby">  #MysQL db - Local
+  DB_TEST_USERNAME: &#39;root&#39;
+  DB_TEST_PASSWORD: &#39;&#39;
+  DB_TEST_DB: &#39;&#39;
+  DB_TEST_END_POINT: &#39;127.0.0.1&#39;
+  DB_TEST_PORT: &#39;3306&#39;
+</code></pre>
+
+<p>For production, the database is created as part of the deployment script.</p>
+
+<h2>Deployment instructions</h2>
+
+<p>To <a href="https://devcenter.heroku.com/articles/getting-started-with-rails4">deploy onto heroku</a> cd into the application root folder, login into heroku.</p>
+
+<pre class="code ruby"><code class="ruby">$ heroku login
+</code></pre>
+
+<p>Then run one of the deployment scripts.
+Before running the script, inspect the script to costumise the deployment to your needs, and make sure it does what expected, I take no responsability for these 3 deployment script.</p>
+
+<p>When deploying the application for the first time run.</p>
+
+<pre class="code bash"><code class="bash">$ ./first_time_deploy.sh
+</code></pre>
+
+<p>For subsequent deployments you can use</p>
+
+<pre class="code bash"><code class="bash">$ ./deploy.sh
+</code></pre>
+
+<p>If after the first deployment you want to deploy as new application run</p>
+
+<pre class="code bash"><code class="bash">$ new_deploy.sh
+</code></pre>
+
+<p>Note that this last one, does not delete the previous application, it simply removes the git remote.
+if you wish to delete it, you&#39;d need to run <code>heroku apps:destroy --app $app --confirm $app</code> where <code>$app</code> is the name of the app you want to delete. Alternatively you can log in to you Heroku account and delete it from there.</p>
+
+<!-- a rake comand to execute installaiton on heroku -->
+
+<!--
+also see [here](https://devcenter.heroku.com/articles/github-integration) if you want to do automatic deploy from github account.
+ -->
+
+<!-- mysql remote on heroku http://www.christophseydel.pro/blog/2013/09/26/connect-to-remote-mysql-database-from-heroku-europe/ -->
+
+<!-- Need to change, remote RDS instance to pg gem and use postgress on heroku -->
+
+<h1>Licence</h1>
+
+<p><a id="Licence" class="anchor" href="#licence" aria-hidden="true"><span class="octicon octicon-link"></span></a>licence</h2></p>
+
+<p><a href="http://times.github.io/quickQuote">quickQuote</a> is licensed under the <a href="http://opensource.org/licenses/MIT"  target="_blank">MIT license</a>.</p>
+</div></div>
+
+    <div id="footer">
+  Generated on Mon Aug 31 23:22:48 2015 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.0.0).
+</div>
+
+  </body>
+</html>

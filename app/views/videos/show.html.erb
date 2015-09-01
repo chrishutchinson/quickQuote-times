@@ -1,0 +1,156 @@
+<p id="notice"><%= notice %></p>
+
+<div class="row">
+  <!-- Search Box and HyperTranscript -->
+  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" >
+    <!-- search box-->
+    <div class="form-group">
+      <div class="input-group">
+        <span class="input-group-addon glyphicon glyphicon-search" aria-hidden="true""></span>
+        <input type="text" class="form-control" id="search-criteria" placeholder="Search for a word...">
+      </div>
+    </div>
+    <!-- transcription - HyperTranscript text-->
+    <div id="transcription" >
+    <% if @video.transcriptions.exists? %>
+      <% @video.transcriptions.last.lines.each do |line| %>
+        <p class="line">
+      <% line.words.each do |word| %>
+              <span class="word not-read" tcIn="<%= word.tc_in %>" tcOut="<%= word.tc_out %>" line="<%= word.line.id %>" transcription="<%= word.transcription.id %>" ><%= word.word %></span>
+          <% end %>
+          </p>
+      <% end %>
+      <% else %>
+          <div class="alert alert-dismissible alert-success">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>Your transcriptions are being processed </strong>
+          </div>
+      <% end %>
+    </div>
+
+   </div><!--col-->
+
+  <!-- Video and Quote Selection form-->
+  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" >
+    <!-- Video-->
+      <%= videojs_rails sources: { mp4:  @video.link , webm: "http://another.com/path/to/video.webm"}, setup: "{ example_option: true}", controls: true, width:"auto", height:"auto", id: "video_player" %>
+    <!-- end video-->
+    <!-- Quote Selection form input fields-->
+    <h3>Quote</h3>
+    <!-- Quote selection Text area-->
+    <textarea  class="form-control quote" id="textQuote" rows="4" cols="50" >
+    Select quote in transcription
+    </textarea>
+    <p class="help-block">Select a line of text from the transcription to generate a video quote</p>
+    <!-- Quote Selection author field-->
+    <div class="form-group">
+      <label class="control-label" for="focusedInput">Author</label>
+      <input class="form-control" id="author" id="focusedInput" type="text" placeholder="Author of Quote">
+    </div>
+    <!-- input output duration-->
+    <div class="row" >
+      <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" >
+    <div class="form-group">
+      <label class="control-label" for="focusedInput">In</label>
+      <input class="form-control" id="input" id="focusedInput" type="text" value="00:00:00:00"disabled="">
+    </div>
+      </div><!-- col-->
+      <!-- Output field-->
+        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" >
+    <div class="form-group">
+      <label class="control-label" for="focusedInput">Out</label>
+      <input class="form-control" id="output" id="focusedInput" type="text" value="00:00:00:00"disabled="">
+    </div>
+       </div> <!-- col-->
+      <!-- Duration-->
+      <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" >
+    <div class="form-group">
+      <label class="control-label" for="disabledInput">Duration</label>
+      <input class="form-control" id="duration" id="disabledInput" type="text" value="00:00:00:00" disabled="">
+    </div>
+    </div><!-- col-->
+<!--Buttons preview and Export, Buttons trigger modal -->
+  </div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3" >
+      <!-- Preview button-->
+      <button type="button" class="btn btn-sm btn-warning" id="preview" data-toggle="modal" data-target="#previewModal">
+        Preview
+      </button>
+      <!-- Export button-->
+      <button type="button" class="btn btn-sm btn-success" id="export" data-loading-text="Exporting...">
+      Export
+    </button>
+      </div>
+    </div><!-- col-->
+   </div> <!--row-->
+  </div><!--col-->
+</div><!--row-->
+
+<!--Modal preview-->
+<div class="modal fade" id="previewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel"> Preview: <strong><%= @video.title %></strong></h4>
+      </div>
+      <div class="modal-body">
+        <!--Video Quote Preview Demo-->
+        <div class='video-quote' >
+          <blockquote id='videoQuoteText-id-preview'>
+            <p> &#9658;<small>  Watch Video </small></p>
+            <p id="quotePreview"></p>
+            <br><cite id='previewAuthor'></cite>
+          </blockquote>
+          <div  id='video-wrap-preview' class='video-wrap video-wrap--closed'>
+            <%= videojs_rails sources: { mp4:  @video.link , webm: "http://another.com/path/to/video.webm"}, setup: "{ example_option: true}", controls: true, width:"auto", height:"auto", id: "videoPlayerPreview", class: "video-js" %>
+          </div> <!--video wrap-->
+        </div><!-- video quote-->
+        <!--end of video Quote Preview Demo-->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!--end modal preview-->
+
+<!--Modal Export-->
+<div class="modal fade" id="exportModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel"> Export: <strong><%= @video.title %></strong></h4>
+
+      </div>
+      <div class="modal-body">
+        <!-- quote preview-->
+        <h4>Embed code</h4>
+        <textarea id="textAreaExport" width="100%" height="300px"></textarea>
+      </div>
+      <div class="modal-footer">
+         <h4>Video URL:</h4><textarea id="snippetURL"  height="20px"></textarea>
+         <h4>Quote:</h4> <textarea id="quoteText" height="20px" ></textarea>
+         <h4>Author:</h4> <textarea id="quoteAuthor" height="20px" ></textarea>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!--end modal export-->
+
+<!--Invisible text area template for first part of export quote textarea -->
+<%= render partial: "quotes/quote_export" %>
+
+<!--Loops through all the page specific javascript files inside the show_js folder for the show.html.erb page and adds them to this page -->
+<% content_for :page_js do %>
+    <script type="text/javascript">
+        <% Dir["#{Rails.root}/app/views/videos/show_js/*"].each do |fname| %>
+            <%= render file: "#{fname}" %>
+        <% end %>
+    </script>
+<% end %>

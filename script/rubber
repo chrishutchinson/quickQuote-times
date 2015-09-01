@@ -1,0 +1,17 @@
+#!/bin/bash
+
+export RUBBER_ROOT=`dirname $0`/..
+export BUNDLE_GEMFILE=$RUBBER_ROOT/Gemfile
+
+if type rvm &> /dev/null; then
+  # run through "rvm do" so we work in crontab - default rvm ruby
+  # version is set during bootstrap
+  rvm default do bundle exec rubber "$@"
+else
+  # Use binstubs if they exist since they're faster.
+  if [[ -f bin/rubber ]]; then
+    ./bin/rubber "$@"
+  else
+    bundle exec rubber "$@"
+  fi
+fi

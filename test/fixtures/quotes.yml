@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tc_in: 1.5
+  tc_out: 1.5
+  duration: 1.5
+  text: MyText
+  video_id: 
+
+two:
+  tc_in: 1.5
+  tc_out: 1.5
+  duration: 1.5
+  text: MyText
+  video_id: 

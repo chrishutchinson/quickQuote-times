@@ -1,0 +1,58 @@
+<h1>Videos</h1>
+<% if @videos.empty? %>
+    <p><%= "No videos, click on add new video to get started " %></p>
+<% else %>
+    <p>Your videos</p>
+<% end %>
+<hr>
+    <div class="table-responsive">
+    <table class="table table-condensed  table-hover">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Preview</th>
+        <th>Status</th>
+        <th>File Name</th>
+        <th>Size</th>
+        <th>Media Type</th>
+        <th>Published at</th>
+        <th>S3</th>
+        <th>Show</th>
+        <th>Delete</th>
+      </tr>
+      </thead>
+      <% counter = 0%>
+      <% @videos.each do |v|  %>
+          <!-- counter-->
+        <th scope="row"><%= counter+=1 %></th>
+          <!-- title-->
+        <td>
+          <%= link_to "#{ v.title}",user_video_path(@user, v) %>
+        </td>
+          <td>
+            <%= videojs_rails sources: { mp4:  v.link , webm: "http://another.com/path/to/video.webm"}, setup: "{ example_option: true}", controls: true, width:"300", height:"200", id: "video_player_#{v.id}", class: "img-thumbnail" %>
+          </td>
+          <!-- processed status-->
+        <td><% if v.is_processed == true %>
+              <span class="label label-success">Ready</span>
+          <% else %>
+              <span class="label label-default">Processing</span>
+          <% end %></td>
+          <!-- file name-->
+          <td><%= v.media_file_name %></td>
+          <!-- Size -->
+          <td><%=  Filesize.from( v.media_file_size.to_s+" B").pretty %></td>
+          <!-- type-->
+          <td><%= v.media_content_type %></td>
+          <td><%= v.published_at %> </td>
+          <td><%= link_to "#{v.media_file_name}","#{v.link}" %></td>
+          <td><%= link_to 'Show',user_video_path(@user, v), class: "btn btn-primary btn-xs" %></td>
+          <td><%= link_to 'Delete', user_video_path(@user, v),  class: "btn btn-danger btn-xs", disabled: false,
+                          method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+      <% end %>
+    </table>
+    </div>
+
+<%= link_to 'Add a New Video', new_user_video_path(@user.id), class: 'btn btn-primary btn-sm' %>

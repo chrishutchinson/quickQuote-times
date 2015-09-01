@@ -1,0 +1,1 @@
+// to make height of transcription div change depending on size of page height// to be triggered on page risze? ////$(window).on('resize', function(){//    if($( window ).height()> 760 ){//        $("#transcription").css("height"  , $( window ).height()-200)//    }//});

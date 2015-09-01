@@ -1,0 +1,91 @@
+/* *
+ * Function that when selecting text from transcription populates the select quote form input fields.
+ * Author, Quote Text, Time in, Time out, Duration.
+ *
+ * It does so by creating a range.
+ * reads the time attribute from the word element.
+ * Compares timecode in and time code out and inverts them if selection has been made from bottom to top.
+ * Populates the Quote Select form input fields.
+ *
+ * */
+
+$(function() {
+    'use strict';
+
+    // select quote fills in quote text area details
+    var quote;
+    $("#transcription").mouseup(function() {
+        var selection;
+        console.log("selection made");
+        if (window.getSelection) {
+            selection = window.getSelection();
+        } else if (document.selection) {
+            selection = document.selection.createRange();
+        }
+        quote = selection.toString();
+        //removes new lines divisions in the text of the quote
+        quote = quote.replace(/(\r\n|\n|\r)/gm,"");
+        //capitalize quote, and adds dot at end of line
+        quote = quote.charAt(0).toUpperCase() + quote.slice(1)+".";
+        $("#textQuote").val(quote);
+
+        //first in seleciton
+        var firstInSeleciton =  selection.focusNode.parentNode;
+        //last in selection
+        var lastInSelection = selection.anchorNode.parentNode;
+
+        var rangeObject = getRangeObject(selection);
+        function getRangeObject(selectionObject) {
+            if (selectionObject.getRangeAt)
+                return selectionObject.getRangeAt(0);
+            else { // Safari!
+                var range = document.createRange();
+                range.setStart(selectionObject.anchorNode,selectionObject.anchorOffset);
+                range.setEnd(selectionObject.focusNode,selectionObject.focusOffset);
+                return range;
+            }
+        }
+
+        var selection_in;
+        var selection_out;
+
+        //startContainer
+        if (rangeObject.startContainer.parentNode.className == "line"){
+            selection_in  =  rangeObject.startContainer.parentNode.firstElementChild.attributes[1].value;
+        }else if(rangeObject.startContainer.parentNode.className == "word read" || rangeObject.startContainer.parentNode.className == "word not-read"){
+            var selection_in= rangeObject.startContainer.parentNode.attributes[1].value;
+        }else{
+            console.log("not a line not a word");
+        }
+
+        //endContainer
+        if (rangeObject.endContainer.parentNode.className == "line"){
+            selection_out  =  rangeObject.endContainer.parentNode.firstElementChild.attributes[2].value;
+        }else if(rangeObject.endContainer.parentNode.className == "word read" || rangeObject.endContainer.parentNode.className == "word not-read"){
+            var selection_out= rangeObject.endContainer.parentNode.attributes[2].value;
+        }else if(rangeObject.endContainer.className=="line") {
+            var selection_out= rangeObject.endContainer.firstChild.nextSibling.attributes[2].value;
+        }else{
+            console.log("not a line not a word");
+        }
+
+        //     selection_in >=<  selection_out //
+        var tc_in;
+        var tc_out;
+
+        if ( parseFloat(selection_in) >  parseFloat(selection_out)){//parse int
+            tc_in = selection_out;
+            tc_out = selection_in;
+        }else {
+            tc_in =selection_in;
+            tc_out =selection_out;
+        }
+
+        var duration = parseFloat(tc_out) -  parseFloat(tc_in) ;
+        //  update quote selector with values
+        $('#input').val(tc_in);
+        $('#output').val(tc_out);
+        $('#duration').val( parseFloat(duration).toFixed(2));
+    });
+});
+////////////////end quote selection

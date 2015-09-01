@@ -1,0 +1,47 @@
+/*// Place all the styles related to the welcome controller here.*/
+/*// They will automatically be included in application.css.*/
+/*// You can use Sass (SCSS) here: http://sass-lang.com/*/
+
+#welcome_page {
+    background: url("/assets/header.jpg") ;
+    background-attachment: fixed;
+    background-position: 100% 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.jumbotron {
+    /* border: 45px; */
+    padding: 50px;
+    border-radius: 25px!important;
+    background: rgba(0, 0, 25, 0.5)!important;
+}
+
+.jumbotron h1{
+    color: white!important;
+    /*color:red!important;*/
+}
+
+.jumbotron p{
+    color: white!important;
+}
+
+nav#navBarHome {
+    background: rgba(0, 0, 25, 0.5)!important;
+    color:white!important;
+}
+
+/*nav#navBarHome.navbar.navbar-default{*/
+    /*background: rgba(0, 0, 25, 0.5)!important;*/
+
+/*}*/
+#navBarHome a{
+    color:white!important;
+}
+
+.jumbotron a {
+    color: white!important;
+}
+
+

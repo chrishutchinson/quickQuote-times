@@ -1,0 +1,21 @@
+<% content_for(:body_attributes) do %>
+    id="welcome_page" data-no-turbolink="true"
+<% end %>
+<br>
+<div class="row">
+<div class="col-xs-12 col-sm-8 col-md-6 col-lg-5">
+<div class="jumbotron">
+	<div class="row">
+      <h1>quickQuote <small></small></h1>
+      <p><b>Easily find and embed video quotes in your article.</b></p>
+      <p><b>No tedious transcribing and video editing experience required.</b></p>
+    </div> <!-- row -->
+    <p>
+  <% if current_user %>
+  <% else %>
+          <%= link_to 'Sign Up','/auth/google_oauth2', class: 'btn btn-primary btn-lg' %></p>
+  <% end %>
+      <a href="#" class="btn btn-success btn-xs disabled">Beta</a>
+</div>
+</div>
+</div>

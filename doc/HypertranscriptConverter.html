@@ -1,0 +1,337 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: HypertranscriptConverter
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!HypertranscriptConverter.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (H)</a> &raquo;
+    
+    
+    <span class="title">HypertranscriptConverter</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: HypertranscriptConverter
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">HypertranscriptConverter</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/hypertranscriptConverter.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>convert srt file to word_accurate hypertranscript
+convertend into ruby from <a href="https://github.com/maboa/hyperaudioconverter">hyperaudio converter javascript opensoure project by Boas</a>
+within rails you can call it like so</p>
+
+<pre class="code ruby"><code class="ruby"> <span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='const'>Rails</span><span class='period'>.</span><span class='id identifier rubyid_root'>root</span><span class='embexpr_end'>}</span><span class='tstring_content'>/lib/hypertranscriptConverter.rb</span><span class='tstring_end'>&quot;</span></span>
+ <span class='id identifier rubyid_htConverter'>htConverter</span><span class='op'>=</span> <span class='const'>HypertranscriptConverter</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+ <span class='id identifier rubyid_ht_data_structure'>ht_data_structure</span><span class='op'>=</span> <span class='id identifier rubyid_htConverter'>htConverter</span><span class='period'>.</span><span class='id identifier rubyid_parse_srt_String'>parse_srt_String</span><span class='lparen'>(</span><span class='id identifier rubyid_srt_string'>srt_string</span><span class='rparen'>)</span>
+</code></pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>ruby hash hypertranscript data structure</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div>
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#parse_srt_String-instance_method" title="#parse_srt_String (instance method)">- (Object) <strong>parse_srt_String</strong>(srt_string) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="parse_srt_String-instance_method">
+  
+    - (<tt>Object</tt>) <strong>parse_srt_String</strong>(srt_string) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/hypertranscriptConverter.rb', line 13</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_parse_srt_String'>parse_srt_String</span><span class='lparen'>(</span><span class='id identifier rubyid_srt_string'>srt_string</span><span class='rparen'>)</span>
+  <span class='comment'># creates a file out of the srt file content String using [srt library](https://github.com/cpetersen/srt), example :
+</span>  <span class='comment'># ```
+</span>  <span class='comment'># =&gt; #&lt;SRT::File:0x007fcc8ab349b8 @lines=[#&lt;SRT::Line:0x007fcc8ab34990 @sequence=1, @start_time=0.68, @end_time=1.4, @text=[&quot;i everybody&quot;]&gt;, #&lt;SRT::Line:0x007fcc8ab3e3a0 @sequence=2, @start_time=2.53, @end_time=8.51, @text=[&quot;this week i plan to join the students teachers&quot;, &quot;businesses and nonprofit organisations taking&quot;, &quot;big&quot;]&gt; ...
+</span>  <span class='comment'>#```
+</span>  <span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>srt</span><span class='tstring_end'>&#39;</span></span>
+  <span class='id identifier rubyid_file'>file</span> <span class='op'>=</span> <span class='const'>SRT</span><span class='op'>::</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='id identifier rubyid_srt_string'>srt_string</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_srt_hash'>srt_hash</span><span class='op'>=</span><span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_line_number'>line_number</span> <span class='op'>=</span> <span class='int'>1</span>
+
+  <span class='comment'># Iterates over lines of srt file.
+</span>  <span class='id identifier rubyid_file'>file</span><span class='period'>.</span><span class='id identifier rubyid_lines'>lines</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_line'>line</span><span class='op'>|</span>
+    <span class='comment'># array of words in the line
+</span>    <span class='comment'># in srt file object text is stored as array of string
+</span>    <span class='comment'>#example
+</span>    <span class='comment'># ```
+</span>    <span class='comment'>#&lt;SRT::Line:0x007fcc8ab3db80 @sequence=3, @start_time=8.51, @end_time=11.6, @text=[&quot;new steps to support computer science in&quot;, &quot;american schools&quot;]&gt;, ..
+</span>    <span class='comment'>#````
+</span>    <span class='comment'># two strings make up the text of a line  in the srt file, we join them into one string, and then split at space to make an array of words.
+</span>    <span class='id identifier rubyid_words_in_a_line'>words_in_a_line</span> <span class='op'>=</span> <span class='id identifier rubyid_line'>line</span><span class='period'>.</span><span class='id identifier rubyid_text'>text</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> </span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> </span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_number_of_words_in_line'>number_of_words_in_line</span> <span class='op'>=</span> <span class='id identifier rubyid_words_in_a_line'>words_in_a_line</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span>
+    <span class='comment'># time duration of line time start - time end
+</span>    <span class='id identifier rubyid_line_duration'>line_duration</span> <span class='op'>=</span> <span class='id identifier rubyid_line'>line</span><span class='period'>.</span><span class='id identifier rubyid_end_time'>end_time</span> <span class='op'>-</span> <span class='id identifier rubyid_line'>line</span><span class='period'>.</span><span class='id identifier rubyid_start_time'>start_time</span>
+    <span class='comment'># average_word_duration is the duration of the line divided by the number of words in the line
+</span>    <span class='id identifier rubyid_average_word_duration'>average_word_duration</span>  <span class='op'>=</span> <span class='id identifier rubyid_line_duration'>line_duration</span> <span class='op'>/</span> <span class='id identifier rubyid_number_of_words_in_line'>number_of_words_in_line</span>
+    <span class='comment'># to calculate the number of letters in a sentence
+</span>    <span class='id identifier rubyid_number_of_letters_in_a_sentence'>number_of_letters_in_a_sentence</span> <span class='op'>=</span><span class='int'>0</span>
+    <span class='comment'># we loop through the array of words, and add up the size of each word
+</span>    <span class='id identifier rubyid_words_in_a_line'>words_in_a_line</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_word'>word</span><span class='op'>|</span>
+      <span class='id identifier rubyid_number_of_letters_in_a_sentence'>number_of_letters_in_a_sentence</span> <span class='op'>+=</span> <span class='id identifier rubyid_word'>word</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span>
+    <span class='kw'>end</span>
+    <span class='id identifier rubyid_word_counter'>word_counter</span> <span class='op'>=</span><span class='int'>0</span>
+    <span class='id identifier rubyid_one_line_array_or_words'>one_line_array_or_words</span> <span class='op'>=</span><span class='lbracket'>[</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_words_in_a_line'>words_in_a_line</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_word'>word</span><span class='op'>|</span>
+      <span class='comment'># word duration is equal to number of letters
+</span>      <span class='id identifier rubyid_word_duration'>word_duration</span> <span class='op'>=</span> <span class='id identifier rubyid_word'>word</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>*</span> <span class='id identifier rubyid_average_word_duration'>average_word_duration</span>
+      <span class='id identifier rubyid_word_start_time'>word_start_time</span> <span class='op'>=</span> <span class='id identifier rubyid_line'>line</span><span class='period'>.</span><span class='id identifier rubyid_start_time'>start_time</span> <span class='op'>+</span> <span class='id identifier rubyid_word_counter'>word_counter</span> <span class='op'>*</span> <span class='id identifier rubyid_average_word_duration'>average_word_duration</span>
+      <span class='id identifier rubyid_word_end_time'>word_end_time</span> <span class='op'>=</span> <span class='id identifier rubyid_word_start_time'>word_start_time</span><span class='op'>+</span><span class='id identifier rubyid_word_duration'>word_duration</span>
+      <span class='id identifier rubyid_corresponding_word'>corresponding_word</span> <span class='op'>=</span> <span class='id identifier rubyid_line'>line</span><span class='period'>.</span><span class='id identifier rubyid_text'>text</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> </span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> </span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='id identifier rubyid_word_counter'>word_counter</span><span class='rbracket'>]</span>
+      <span class='comment'># saving into hypertranscript ruby hash data structure
+</span>      <span class='id identifier rubyid_word_hash'>word_hash</span> <span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span>
+      <span class='id identifier rubyid_word_hash'>word_hash</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>tc_in</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_word_start_time'>word_start_time</span><span class='period'>.</span><span class='id identifier rubyid_to_f'>to_f</span>
+      <span class='id identifier rubyid_word_hash'>word_hash</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>tc_out</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_word_end_time'>word_end_time</span><span class='period'>.</span><span class='id identifier rubyid_to_f'>to_f</span>
+      <span class='id identifier rubyid_word_hash'>word_hash</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>word</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='op'>=</span> <span class='id identifier rubyid_corresponding_word'>corresponding_word</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
+      <span class='id identifier rubyid_one_line_array_or_words'>one_line_array_or_words</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_word_hash'>word_hash</span>
+      <span class='id identifier rubyid_word_counter'>word_counter</span> <span class='op'>+=</span><span class='int'>1</span>
+    <span class='kw'>end</span>
+    <span class='comment'># adding onto hypertranscript ruby hash data structure
+</span>    <span class='id identifier rubyid_srt_hash'>srt_hash</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_one_line_array_or_words'>one_line_array_or_words</span>
+    <span class='comment'># reset the  `one_line_array_or_words`
+</span>    <span class='id identifier rubyid_one_line_array_or_words'>one_line_array_or_words</span> <span class='op'>=</span><span class='lbracket'>[</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_line_number'>line_number</span> <span class='op'>+=</span><span class='int'>1</span>
+  <span class='kw'>end</span>
+  <span class='comment'>#returning hypertranscript ruby hash data structure
+</span>  <span class='kw'>return</span> <span class='id identifier rubyid_srt_hash'>srt_hash</span>
+  <span class='comment'># example output
+</span>  <span class='comment'># array of array where each word is an hash with tc in , tc out and text,
+</span>  <span class='comment'># and words in a line are then inner array, and whole of the lines are contained in
+</span>  <span class='comment'># the outer array
+</span>  <span class='comment'># [[{&quot;tc_in&quot;=&gt;0.049, &quot;tc_out&quot;=&gt;1.1656666666666666, &quot;word&quot;=&gt;&quot;God&quot;}, {&quot;tc_in&quot;=&gt;0.4212222222222222, &quot;tc_out&quot;=&gt;3.399, &quot;word&quot;=&gt;&quot;maintain&quot;}, {&quot;tc_in&quot;=&gt;0.7934444444444445, &quot;tc_out&quot;=&gt;1.1656666666666666, &quot;word&quot;=&gt;&quot;I&quot;}, {&quot;tc_in&quot;=&gt;1.1656666666666666, &quot;tc_out&quot;=&gt;2.2823333333333333, &quot;word&quot;=&gt;&quot;and&quot;}, {&quot;tc_in&quot;=&gt;1.5378888888888889, &quot;tc_out&quot;=&gt;3.026777777777778, &quot;word&quot;=&gt;&quot;Kyle&quot;}, {&quot;tc_in&quot;=&gt;1.910111111111111, &quot;tc_out&quot;=&gt;3.399, &quot;word&quot;=&gt;&quot;show&quot;}, {&quot;tc_in&quot;=&gt;2.2823333333333333, &quot;tc_out&quot;=&gt;3.7712222222222223, &quot;word&quot;=&gt;&quot;from&quot;}, {&quot;tc_in&quot;=&gt;2.6545555555555556, &quot;tc_out&quot;=&gt;6.004555555555555, &quot;word&quot;=&gt;&quot;Lewistown&quot;}, {&quot;tc_in&quot;=&gt;3.026777777777778, &quot;tc_out&quot;=&gt;5.632333333333333, &quot;word&quot;=&gt;&quot;Montana&quot;}],...
+</span><span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Mon Aug 31 23:22:48 2015 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.0.0).
+</div>
+
+  </body>
+</html>

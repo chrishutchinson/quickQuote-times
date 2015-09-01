@@ -1,0 +1,162 @@
+
+
+/*Video Js responsive */
+
+.video-js {
+    padding-top: 56.25%
+}
+.vjs-fullscreen {
+    padding-top: 0px
+}
+/* end of VideoJs Responsive*/
+
+/*****************************/
+/*Video Preview modal*/
+/*styling of the video quote*/
+.video-quote  blockquote {
+    background: #FAFAFC;
+    border-left: 10px solid #E8E8F2;
+    margin: 1.5em 10px;
+    padding: 0.5em 10px;
+    quotes: "\201C""\201D""\2018""\2019";
+    cursor:pointer;
+}
+.video-quote  blockquote:before {
+    color: #3D5266;
+    content: '“ ';
+    font-family: Times!important;
+    font-size: 4em;
+    line-height: 0.1em;
+    margin-right: 0.25em;
+    vertical-align: -0.4em;
+    cursor:pointer;
+}
+
+
+.video-quote blockquote p {
+    display: inline;
+}
+cite#authorVideoQuote {
+    font-style: italic;
+}
+/*classes to show hide video element*/
+.video-wrap {
+    overflow: hidden;
+    height: auto;
+    -webkit-transition: height 0.3s ease;
+}
+
+.video-wrap--closed {
+    height: 0;
+}
+
+/* end of video preview modal */
+/*****************************/
+
+textarea.quote {
+    margin: 10px;
+    width: 80%;
+    height: 100%;
+    border: 1px solid lightgrey;
+
+}
+/*hide words*/
+.hide {
+    display: none!important;
+}
+
+#transcription {
+    height: 600px;
+    position: relative;
+    overflow: auto;
+
+}
+
+textarea#textQuote {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 20px;
+}
+
+textarea:first-letter {
+    text-transform:capitalize;
+
+}
+
+span:hover {
+    background-color: orange;
+    /*to change look of coursor when going over text of hypertranscript*/
+    cursor:pointer;
+    /*cursor:e-resize;*/
+}
+
+
+span.word.not-read  {
+    color: gray;
+}
+
+
+span.word.read {
+    color: black;
+}
+
+blockquote {
+    font-family: "Times New Roman", Times, serif;
+}
+
+blockquote a:hover {
+    text-decoration: none;
+}
+
+blockquote a:active {
+    text-decoration: none;
+}
+
+body.video {
+    background: #f5f5f5;
+}
+
+
+/*PReview quote CSS*/
+
+blockquote#quotePreview {
+    background: #FAFAFC;
+    border-left: 10px solid #E8E8F2;
+    margin: 1.5em 10px;
+    padding: 0.5em 10px;
+    quotes: "\201C""\201D""\2018""\2019";
+}
+
+blockquote#quotePreview:before {
+    color: #3D5266;
+    content: open-quote;
+    font-size: 4em;
+    line-height: 0.1em;
+    margin-right: 0.25em;
+    vertical-align: -0.4em;
+}
+
+blockquote#quotePreview p {
+    display: inline;
+}
+
+
+#previewLink {
+    border:none!important;
+    outline:none!important;
+    text-decoration:none!important;
+    color:inherit!important;
+    cursor:pointer;
+}
+
+video#videoPlayerPreview{
+    margin-left:25%;
+}
+
+
+textarea {
+    width: 100%!important;
+}
+
+textarea#textAreaExport {
+    height: 300px!important;
+}

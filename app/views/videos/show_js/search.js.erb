@@ -1,0 +1,38 @@
+/* *
+ * HyperTranscript Search function
+ * Word accurate, highlights the line in yellow, and makes matched word bold.
+ * It does so by switching CSS classes.
+ * */
+
+/////////////////////////// word accurate search///////////////////////////////////
+    $("#search-criteria").keypress(function(){
+        var txt = $('#search-criteria').val();
+        console.log(txt);
+        if (txt == ""){
+            $( '.line' ).css( "background-color", "" );
+            $( '.word' ).css( "background-color", "" );
+            $( '.word' ).css( "font-weight", "" );
+        }else {
+            $( '.line' ).css( "background-color", "" );
+            $( '.word' ).css( "background-color", "" );
+            $( '.word' ).css( "font-weight", "" );
+            $( '.line:contains("'+txt+'")' ).css( "background-color", "yellow" );
+            $( '.word:contains("'+txt+'")' ).css( "font-weight", "bold" );
+        }
+    });
+    $("#search-criteria").keyup(function(){
+        var txt = $('#search-criteria').val();
+        console.log(txt);
+        if (txt === ""){
+            $( '.line' ).css( "background-color", "" );
+            $( '.word' ).css( "background-color", "" );
+            $( '.word' ).css( "font-weight", "" );
+        }else {
+            $( '.line' ).css( "background-color", "" );
+            $( '.word' ).css( "background-color", "" );
+            $( '.word' ).css( "font-weight", "" );
+            $( '.line:contains("'+txt+'")' ).css( "background-color", "yellow" );
+            $( '.word:contains("'+txt+'")' ).css( "font-weight", "bold" );
+        }
+    });
+/////////////////////end  word accurate search///////////////////////////////////

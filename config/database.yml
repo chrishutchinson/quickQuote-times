@@ -1,0 +1,46 @@
+# MySQL.  Versions 5.0+ are recommended.
+#
+# Install the MYSQL driver
+#   gem install mysql2
+#
+# Ensure the MySQL gem is defined in your Gemfile
+#   gem 'mysql2'
+#
+# And be sure to use new-style password hashing:
+#   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
+#
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  pool: 5
+  username: <%= ENV['RDS_USERNAME'] %>
+  password: <%= ENV['RDS_PASSWORD'] %>
+
+development:
+  <<: *default
+  database: <%= ENV['RDS_DB_DEVELOPMENT'] %>
+  username: <%= ENV['RDS_USERNAME_DEVELOPMENT'] %>
+  password: <%= ENV['RDS_PASSWORD_DEVELOPMENT'] %>
+  host: <%= ENV['RDS_END_POINT_DEVELOPMENT'] %>
+  port: <%= ENV['RDS_PORT_DEVELOPMENT'] %>
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test:
+  <<: *default
+  database: <%= ENV['DB_TEST_DB'] %>
+  username: <%= ENV['DB_TEST_USERNAME'] %>
+  password: <%= ENV['DB_TEST_PASSWORD'] %>
+  host: <%= ENV['DB_TEST_END_POINT'] %>
+  port: <%= ENV['DB_TEST_PORT'] %>
+
+#
+production:
+  <<: *default
+  database: <%= ENV['RDS_DB'] %>
+  username: <%= ENV['RDS_USERNAME'] %>
+  password: <%= ENV['RDS_PASSWORD'] %>
+  host: <%= ENV['RDS_END_POINT'] %>
+  port: <%= ENV['RDS_PORT'] %>
+

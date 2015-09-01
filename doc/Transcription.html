@@ -1,0 +1,254 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: Transcription
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!Transcription.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (T)</a> &raquo;
+    
+    
+    <span class="title">Transcription</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: Transcription
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">ActiveRecord::Base</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">ActiveRecord::Base</li>
+          
+            <li class="next">Transcription</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">app/models/transcription.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>The transcription class keeps the text of the transcription organised into lines and words.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#return_text_with_punctuation-instance_method" title="#return_text_with_punctuation (instance method)">- (Object) <strong>return_text_with_punctuation</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>A test method to that adds punctuation to a transcription, by adding a <code>.</code> at every line break.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="return_text_with_punctuation-instance_method">
+  
+    - (<tt>Object</tt>) <strong>return_text_with_punctuation</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>A test method to that adds punctuation to a transcription, by adding a <code>.</code> at every line break.
+This is usefull if working with a automaticlaly generated transcription from spoken data where the transcription
+will not have punctuaiton by default.
+approaximate the punctuation, using the original line breaks from the srt file produced by the text to speech API.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/transcription.rb', line 14</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_return_text_with_punctuation'>return_text_with_punctuation</span>
+  <span class='id identifier rubyid_sentences'>sentences</span> <span class='op'>=</span><span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_lines'>lines</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_l'>l</span><span class='op'>|</span>
+    <span class='comment'># reset the sentence array for every line
+</span>    <span class='id identifier rubyid_sentence'>sentence</span><span class='op'>=</span><span class='lbracket'>[</span><span class='rbracket'>]</span>
+    <span class='comment'># add every word that belong to a line to the sentence array
+</span>      <span class='id identifier rubyid_l'>l</span><span class='period'>.</span><span class='id identifier rubyid_words'>words</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span> <span class='id identifier rubyid_w'>w</span><span class='op'>|</span>
+        <span class='id identifier rubyid_sentence'>sentence</span> <span class='op'>&lt;&lt;</span>  <span class='id identifier rubyid_w'>w</span><span class='period'>.</span><span class='id identifier rubyid_word'>word</span>
+      <span class='kw'>end</span>
+    <span class='comment'># joining words into sentence as divided by lines in the database.
+</span>    <span class='id identifier rubyid_sentences'>sentences</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_sentence'>sentence</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> </span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  <span class='comment'># joining sentences, with full stop.
+</span>  <span class='id identifier rubyid_sentences'>sentences</span> <span class='op'>=</span> <span class='id identifier rubyid_sentences'>sentences</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>. </span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='comment'>#if using with [ruby summarization algorith](https://github.com/darkshadow/summarization) uncoment next two lines
+</span>  <span class='comment'># they remove sentences with one word, and with two words,  as a workaround of  the summarization  algo bug
+</span>  <span class='comment'># (it crashes if sentence is had one or two words only)
+</span>
+  <span class='comment'># sentences = sentences.gsub(/\. [a-zA-Z_0-9]*\./,&quot; &quot;)
+</span>  <span class='comment'># sentences = sentences.gsub(/\. [A-Za-z]* [A-Za-z]*\./,&quot; &quot;)
+</span>  <span class='kw'>return</span> <span class='id identifier rubyid_sentences'>sentences</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Mon Aug 31 23:22:48 2015 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.0.0).
+</div>
+
+  </body>
+</html>

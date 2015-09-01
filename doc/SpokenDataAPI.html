@@ -1,0 +1,1460 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: SpokenDataAPI
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!SpokenDataAPI.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (S)</a> &raquo;
+    
+    
+    <span class="title">SpokenDataAPI</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: SpokenDataAPI
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">SpokenDataAPI</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/spokenDataAPI.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>An SDK for the spoken data API.<br>
+date: 22/07/2015 <br>
+<a href="http://spokendata.com/api">Link to Spoken Data API specifications</a> <br>
+Spoken Data returns an XML.<br>
+This SDK does not implement all of the RESTFULL methods.<br>
+it implements:</p>
+
+<ul>
+<li>retrieving srt file of recording if ready <strong><code>retrieve_subtitles_srt(recording_id)</code></strong> using spoken data uid, if ready returns srt file string, if not returns false boolean.</li>
+<li> send video by URL <strong><code>send_by_video_url(video_url)</code></strong> which returns the spoken data video <code>uid</code>,that you should save for later retrieval.</li>
+<li>also implemented getting <strong>list of recordings</strong> (not in use in example)</li>
+<li><strong><code>get_recording_by_recording_id(recording_id)</code></strong>, returns a recording object  (also used as helper method)</li>
+<li><strong><code>delete_recording(recording_id)</code></strong>
+You can test this as a <a href="http://guides.rubyonrails.org/command_line.html#rails-runner">rails runner</a>,
+
+<ul>
+<li>uncomment the three steps example at the end of the page</li>
+<li>and run from terminal, from the root of the project.
+<code>bash
+rails r app/models/spokenDataAPI.rb
+</code><code>
+to use it in rails add it as a model</code>spokenDataAPI.rb`</li>
+</ul></li>
+</ul>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Author:</p>
+<ul class="author">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>: Pietro Passarelli <br></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="BASE_URL-classvariable" class="">@@BASE_URL =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>http://spokendata.com/api/</span><span class='tstring_end'>&quot;</span></span></pre></dd>
+      
+        <dt id="ENDPOINTS-classvariable" class="">@@ENDPOINTS =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Setup the endpoints</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='lbrace'>{</span><span class='rbrace'>}</span></pre></dd>
+      
+    </dl>
+  
+
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#delete_recording-instance_method" title="#delete_recording (instance method)">- (Object) <strong>delete_recording</strong>(recording_id) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>to delete the recording video file on the spoken data server.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_api_key-instance_method" title="#get_api_key (instance method)">- (Object) <strong>get_api_key</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_base_api_request-instance_method" title="#get_base_api_request (instance method)">- (Object) <strong>get_base_api_request</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_base_url-instance_method" title="#get_base_url (instance method)">- (Object) <strong>get_base_url</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>API Query builder helper methods.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_recording_by_recording_id-instance_method" title="#get_recording_by_recording_id (instance method)">- (Object) <strong>get_recording_by_recording_id</strong>(recording_id) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>gets the recording based on id the id is the one defined by spokendata.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_recording_status-instance_method" title="#get_recording_status (instance method)">- (true if &quot;done&quot;, false if &quot;processing&quot;) <strong>get_recording_status</strong>(recording) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>helper method for <code>get_recordings_status</code> takes in a recording object.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_recordings_list-instance_method" title="#get_recordings_list (instance method)">- (Object) <strong>get_recordings_list</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_srt-instance_method" title="#get_srt (instance method)">- (srt file String) <strong>get_srt</strong>(recording_id) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>helper method for retrieve_subtitles_srt spoken data srt file actually returns a String containing the content of the srt file.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_user_id-instance_method" title="#get_user_id (instance method)">- (Object) <strong>get_user_id</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (SpokenDataAPI) <strong>initialize</strong>(user_id, api_token) </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>initializer.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#open-instance_method" title="#open (instance method)">- (content of url) <strong>open</strong>(url) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>external libraries helper methods open URLs, and returns it&#39;s content, can be a file, such as srt or xml.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#parse_xml-instance_method" title="#parse_xml (instance method)">- (ruby hash) <strong>parse_xml</strong>(url) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>parses url / XML (as received by the API).</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#recording_processed%3F-instance_method" title="#recording_processed? (instance method)">- (true if &quot;done&quot; false if &quot;processing&quot;) <strong>recording_processed?</strong>(recording_id) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>from recording <code>id</code> return boolean for status of the recording.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#retrieve_subtitles_srt-instance_method" title="#retrieve_subtitles_srt (instance method)">- (false if recording status is &quot;processing&quot;, string containing srt file if status is &quot;done&quot;) <strong>retrieve_subtitles_srt</strong>(recording_id) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>retrieves subitles srt file.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#send_by_video_url-instance_method" title="#send_by_video_url (instance method)">- (spokn data uid) <strong>send_by_video_url</strong>(url) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Method to send video for captioning takes in the location url of the video, for instance if you are using amazon S3 this is the full path, if using youtube is just normal URL, also works with Vimeo.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="SpokenDataAPI (class)">SpokenDataAPI</a></span></tt>) <strong>initialize</strong>(user_id, api_token) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>initializer</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+38
+39
+40
+41</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/spokenDataAPI.rb', line 38</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_user_id'>user_id</span><span class='comma'>,</span> <span class='id identifier rubyid_api_token'>api_token</span><span class='rparen'>)</span>
+  <span class='cvar'>@@USER_ID</span> <span class='op'>=</span> <span class='id identifier rubyid_user_id'>user_id</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
+  <span class='cvar'>@@API_TOKEN</span> <span class='op'>=</span> <span class='id identifier rubyid_api_token'>api_token</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="delete_recording-instance_method">
+  
+    - (<tt>Object</tt>) <strong>delete_recording</strong>(recording_id) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>to delete the recording video file on the spoken data server</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>spoken data uid</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+46
+47
+48
+49</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/spokenDataAPI.rb', line 46</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_delete_recording'>delete_recording</span><span class='lparen'>(</span><span class='id identifier rubyid_recording_id'>recording_id</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_request_url'>request_url</span> <span class='op'>=</span> <span class='id identifier rubyid_get_base_api_request'>get_base_api_request</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/recording/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_recording_id'>recording_id</span><span class='embexpr_end'>}</span><span class='tstring_content'>/delete</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_request_url'>request_url</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_api_key-instance_method">
+  
+    - (<tt>Object</tt>) <strong>get_api_key</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+85
+86
+87</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/spokenDataAPI.rb', line 85</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_api_key'>get_api_key</span>
+  <span class='kw'>return</span> <span class='cvar'>@@API_TOKEN</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_base_api_request-instance_method">
+  
+    - (<tt>Object</tt>) <strong>get_base_api_request</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+93
+94
+95
+96</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/spokenDataAPI.rb', line 93</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_base_api_request'>get_base_api_request</span>
+  <span class='id identifier rubyid_url'>url</span> <span class='op'>=</span> <span class='id identifier rubyid_get_base_url'>get_base_url</span> <span class='op'>+</span> <span class='id identifier rubyid_get_user_id'>get_user_id</span><span class='op'>+</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='id identifier rubyid_get_api_key'>get_api_key</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_url'>url</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_base_url-instance_method">
+  
+    - (<tt>Object</tt>) <strong>get_base_url</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>API Query builder helper methods</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+81
+82
+83</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/spokenDataAPI.rb', line 81</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_base_url'>get_base_url</span>
+  <span class='kw'>return</span> <span class='cvar'>@@BASE_URL</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_recording_by_recording_id-instance_method">
+  
+    - (<tt>Object</tt>) <strong>get_recording_by_recording_id</strong>(recording_id) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>gets the recording based on id
+the id is the one defined by spokendata</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>spoken data uid</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/spokenDataAPI.rb', line 110</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_recording_by_recording_id'>get_recording_by_recording_id</span><span class='lparen'>(</span><span class='id identifier rubyid_recording_id'>recording_id</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_url'>url</span> <span class='op'>=</span> <span class='id identifier rubyid_get_base_api_request'>get_base_api_request</span> <span class='op'>+</span> <span class='cvar'>@@ENDPOINTS</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>recordingList</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+  <span class='const'>Rails</span><span class='period'>.</span><span class='id identifier rubyid_logger'>logger</span><span class='period'>.</span><span class='id identifier rubyid_info'>info</span>  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>url: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_url'>url</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='id identifier rubyid_parse_xml'>parse_xml</span><span class='lparen'>(</span><span class='id identifier rubyid_url'>url</span><span class='rparen'>)</span>
+  <span class='const'>Rails</span><span class='period'>.</span><span class='id identifier rubyid_logger'>logger</span><span class='period'>.</span><span class='id identifier rubyid_info'>info</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>result: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_result'>result</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_recordings'>recordings</span> <span class='op'>=</span>  <span class='id identifier rubyid_result'>result</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>recordings</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>recording</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_recordings'>recordings</span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span><span class='id identifier rubyid_v'>v</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_k'>k</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>id</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span> <span class='op'>==</span> <span class='id identifier rubyid_recording_id'>recording_id</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
+      <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='id identifier rubyid_k'>k</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='comment'>#retursn the recording
+</span>  <span class='kw'>return</span> <span class='id identifier rubyid_result'>result</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_recording_status-instance_method">
+  
+    - (<tt>true if "done"</tt>, <tt>false if "processing"</tt>) <strong>get_recording_status</strong>(recording) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>helper method for <code>get_recordings_status</code>
+takes in a recording object</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>recording object</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>true if "done"</tt>, <tt>false if "processing"</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/spokenDataAPI.rb', line 130</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_recording_status'>get_recording_status</span><span class='lparen'>(</span><span class='id identifier rubyid_recording'>recording</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_recording_status'>recording_status</span> <span class='op'>=</span> <span class='id identifier rubyid_recording'>recording</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>status</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_recording_status'>recording_status</span> <span class='op'>==</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>done</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>return</span> <span class='kw'>true</span>
+  <span class='kw'>elsif</span> <span class='id identifier rubyid_recording_status'>recording_status</span> <span class='op'>==</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>processing</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>return</span> <span class='kw'>false</span>
+  <span class='kw'>else</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>There was an error assessing the status of the recording</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_recordings_list-instance_method">
+  
+    - (<tt>Object</tt>) <strong>get_recordings_list</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+98
+99
+100
+101
+102</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/spokenDataAPI.rb', line 98</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_recordings_list'>get_recordings_list</span>
+  <span class='id identifier rubyid_url'>url</span> <span class='op'>=</span> <span class='id identifier rubyid_get_base_api_request'>get_base_api_request</span> <span class='op'>+</span> <span class='cvar'>@@ENDPOINTS</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>recordingList</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='id identifier rubyid_parse_xml'>parse_xml</span><span class='lparen'>(</span><span class='id identifier rubyid_url'>url</span><span class='rparen'>)</span>
+  <span class='kw'>return</span>  <span class='id identifier rubyid_result'>result</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>recordings</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>recording</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_srt-instance_method">
+  
+    - (<tt>srt file String</tt>) <strong>get_srt</strong>(recording_id) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>helper method for retrieve_subtitles_srt<br>
+spoken data srt file actually returns a String containing the content of the srt file.<br>
+ sample output of what spoken data returns using the demo API user and key<br>
+<code>http://spokendata.com/api/18/br3sp59a2it7fig94jdtbt3p9ife5qpx39fd8npp/recording/845/subtitles.srt</code></p>
+
+<pre class="code ruby"><code class="ruby">=&gt; &quot;1\r\n00:00:00,680 --&gt; 00:00:01,400\r\ni everybody\r\n\r\n2\r\n00:00:02,530 --&gt; 00:00:08,510\r\nthis week i plan to join the students teachers\r\nbusinesses and nonprofit organisations taking\r\nbig\r\n\r\n ....&quot;
+</code></pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>spoken data uid</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>srt file String</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+161
+162
+163
+164
+165</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/spokenDataAPI.rb', line 161</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_srt'>get_srt</span><span class='lparen'>(</span><span class='id identifier rubyid_recording_id'>recording_id</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_url'>url</span> <span class='op'>=</span> <span class='id identifier rubyid_get_base_api_request'>get_base_api_request</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/recording/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_recording_id'>recording_id</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='embexpr_end'>}</span><span class='tstring_content'>/subtitles.srt</span><span class='tstring_end'>&quot;</span></span>
+  <span class='comment'># Rails.logger.debug &quot;DEBUG #{open(url).class}&quot;
+</span>  <span class='kw'>return</span> <span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_url'>url</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_user_id-instance_method">
+  
+    - (<tt>Object</tt>) <strong>get_user_id</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+89
+90
+91</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/spokenDataAPI.rb', line 89</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_user_id'>get_user_id</span>
+  <span class='kw'>return</span> <span class='cvar'>@@USER_ID</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="open-instance_method">
+  
+    - (<tt>content of url</tt>) <strong>open</strong>(url) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>external libraries helper methods
+open URLs, and returns it&#39;s content, can be a file, such as srt or xml.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>url string</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>content of url</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+56
+57
+58
+59
+60
+61
+62</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/spokenDataAPI.rb', line 56</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_url'>url</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='const'>URI</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='id identifier rubyid_url'>url</span><span class='rparen'>)</span>
+  <span class='const'>Net</span><span class='op'>::</span><span class='const'>HTTP</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='const'>URI</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='id identifier rubyid_url'>url</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="parse_xml-instance_method">
+  
+    - (<tt>ruby hash</tt>) <strong>parse_xml</strong>(url) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>parses url / XML (as received by the API)</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>url / XML (as received by the API)</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>ruby hash</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/spokenDataAPI.rb', line 68</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_parse_xml'>parse_xml</span><span class='lparen'>(</span><span class='id identifier rubyid_url'>url</span><span class='rparen'>)</span>
+
+  <span class='comment'># IMPORTANT: there is an issue with the xml, the encoding returned by the API is written `utf8` instead of `utf-8`. and that trips up the parser. enche the substitution
+</span>  <span class='id identifier rubyid_result_string'>result_string</span> <span class='op'>=</span> <span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_url'>url</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>utf8</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>utf-8</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='comment'># Parse the xml with nokogiri
+</span>  <span class='id identifier rubyid_nokogiri_xml_document'>nokogiri_xml_document</span> <span class='op'>=</span> <span class='const'>Nokogiri</span><span class='op'>::</span><span class='const'>XML</span><span class='lparen'>(</span><span class='id identifier rubyid_result_string'>result_string</span><span class='rparen'>)</span>
+  <span class='comment'># transform the xml into a ruby hash using built in active support methods.
+</span>  <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='const'>Hash</span><span class='period'>.</span><span class='id identifier rubyid_from_xml'>from_xml</span><span class='lparen'>(</span><span class='id identifier rubyid_nokogiri_xml_document'>nokogiri_xml_document</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span>
+  <span class='comment'># `data` tag encapsulate the rest of the keys /tags/
+</span>  <span class='kw'>return</span> <span class='id identifier rubyid_result'>result</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>data</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="recording_processed?-instance_method">
+  
+    - (<tt>true if "done" false if "processing"</tt>) <strong>recording_processed?</strong>(recording_id) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>from recording <code>id</code> return boolean for status of the recording.
+true if &quot;done&quot; false if &quot;processing&quot;</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>spoken data uid</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>true if "done" false if "processing"</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+146
+147
+148
+149</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/spokenDataAPI.rb', line 146</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_recording_processed?'>recording_processed?</span><span class='lparen'>(</span><span class='id identifier rubyid_recording_id'>recording_id</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_recording'>recording</span> <span class='op'>=</span> <span class='id identifier rubyid_get_recording_by_recording_id'>get_recording_by_recording_id</span><span class='lparen'>(</span><span class='id identifier rubyid_recording_id'>recording_id</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_get_recording_status'>get_recording_status</span><span class='lparen'>(</span><span class='id identifier rubyid_recording'>recording</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="retrieve_subtitles_srt-instance_method">
+  
+    - (<tt>false if recording status is "processing"</tt>, <tt>string containing srt file if status is "done"</tt>) <strong>retrieve_subtitles_srt</strong>(recording_id) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>retrieves subitles srt file</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>spoken data uid</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>false if recording status is "processing"</tt>, <tt>string containing srt file if status is "done"</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+171
+172
+173
+174
+175
+176
+177
+178</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/spokenDataAPI.rb', line 171</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_retrieve_subtitles_srt'>retrieve_subtitles_srt</span><span class='lparen'>(</span><span class='id identifier rubyid_recording_id'>recording_id</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_recording_processed?'>recording_processed?</span><span class='lparen'>(</span><span class='id identifier rubyid_recording_id'>recording_id</span><span class='rparen'>)</span>
+    <span class='kw'>return</span> <span class='id identifier rubyid_get_srt'>get_srt</span><span class='lparen'>(</span><span class='id identifier rubyid_recording_id'>recording_id</span><span class='rparen'>)</span>
+  <span class='kw'>else</span>
+    <span class='kw'>false</span>
+  <span class='kw'>end</span>
+
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="send_by_video_url-instance_method">
+  
+    - (<tt>spokn data uid</tt>) <strong>send_by_video_url</strong>(url) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Method to send video for captioning
+takes in the location url of the video, for instance if you are using amazon S3 this is the full path, if using youtube is just normal URL, also works with Vimeo.<br />
+returns the recording id, to be able to check status and retrieve captions subsequently, best to save this in the database. <br />
+language options are
+from API documentation:</p>
+
+<pre class="code ruby"><code class="ruby">  RECORDING-URL - YouTube or any direct URL of a media file
+  LANGUAGE - english | english-broadcastnews | english-test | russian | chinese-ma | spanish-us | czech | czech-medicine | czech-broadcastnews | slovak
+  ANNOTATOR-ID = id of assigned annotator (leave empty if no annotator)
+</code></pre>
+
+<p>if you are working with languages other then english you could modify params of this url to change language option.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>url of video</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>spokn data uid</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+194
+195
+196
+197
+198
+199
+200</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/spokenDataAPI.rb', line 194</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_send_by_video_url'>send_by_video_url</span><span class='lparen'>(</span><span class='id identifier rubyid_url'>url</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_request_url'>request_url</span> <span class='op'>=</span> <span class='id identifier rubyid_get_base_api_request'>get_base_api_request</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/recording/add?url=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_url'>url</span><span class='embexpr_end'>}</span><span class='tstring_content'>&amp;language=english</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='id identifier rubyid_parse_xml'>parse_xml</span><span class='lparen'>(</span><span class='id identifier rubyid_request_url'>request_url</span><span class='rparen'>)</span>
+  <span class='comment'># example response from api #{&quot;message&quot;=&gt;&quot;This media URL and language have already been entered.&quot;, &quot;recording&quot;=&gt;{&quot;id&quot;=&gt;&quot;5747&quot;}}
+</span>  <span class='kw'>return</span> <span class='id identifier rubyid_response'>response</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>recording</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>id</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_response'>response</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Mon Aug 31 23:22:48 2015 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.0.0).
+</div>
+
+  </body>
+</html>

@@ -1,0 +1,2 @@
+class TranscriptionsController < ApplicationController
+end

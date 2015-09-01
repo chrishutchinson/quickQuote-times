@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tc_in: 1.5
+  tc_out: 1.5
+  word: MyString
+  line_id: 
+
+two:
+  tc_in: 1.5
+  tc_out: 1.5
+  word: MyString
+  line_id: 

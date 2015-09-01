@@ -1,0 +1,55 @@
+/* *
+ * Function to trigger preview modal when clicking on preview button.
+ * gets Quote details from select form field, quote text, input, output, duration, author
+ * and uses it to populate the modal.
+ *
+ * It also initialises a new videojs instance, and sets the start time as the input time
+ * It then stops and reset the playhead when the video reaches the  output time.
+ *
+ * For dropdown of video when clicking on quote, it uses custom javascript that adds and removes css class
+ * to hide or show video element.
+ *
+ * */
+
+$( document ).ready(function() {
+///////////////////// Populate Preview Modal onClick
+    $("#preview").click(function() {
+        var quote = $("textarea").val();
+        var tcin =$("#input").val();
+        var tcout = $("#output").val();
+        var duration = $("#duration").val();
+        var author = $("#author").val();
+
+        $("#previewAuthor").text(author);
+        $("#quotePreview").text(quote);
+
+        var previewPlayer = videojs('videoPlayerPreview');
+        // makes video of preview start from input of selection
+        previewPlayer.ready(function(){
+            previewPlayer.currentTime(tcin);
+        });
+        // when video of preview reaches output of selection resets playhead to input of selection
+        previewPlayer.on('timeupdate', function() {
+            var currentTimeInSeconds =  this.currentTime();
+            if (currentTimeInSeconds >= tcout){
+                previewPlayer.pause();
+                previewPlayer.currentTime(tcin);
+            }
+        });
+    });
+///////////////////// end Populate Preview Modal onClick
+
+///////////////////// dropdown on Preview video modal /////////////////////
+document.getElementById('videoQuoteText-id-preview').onclick = function() {
+    if (document.getElementById('video-wrap-preview').classList.contains('video-wrap--closed')) {
+        document.getElementById('video-wrap-preview').classList.remove('video-wrap--closed');
+//        document.getElementById('videoPlayerPreview').play();
+    } else {
+        document.getElementById('video-wrap-preview').classList.add('video-wrap--closed');
+//        document.getElementById('videoPlayerPreview').pause();
+    }
+};
+///////////////////// end of dropdown on Preview video modal /////////////////////
+});
+
+

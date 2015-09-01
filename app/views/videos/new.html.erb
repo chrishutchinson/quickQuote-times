@@ -1,0 +1,40 @@
+<h1>New Upload</h1>
+<div class="well">
+  <fieldset>
+    <%= form_for([@user, @user.videos.build], html: {multipart: true}) do |f| %>
+        <legend>Upload Video</legend>
+        <% if @video.errors.any? %>
+            <div id="error_explanation">
+              <h2>
+                <%= pluralize(@video.errors.count, "error") %> prohibited
+                this video from being saved:
+              </h2>
+              <ul>
+                <% @video.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+
+        <div class="field">
+          <%= f.label :title %>
+          <br>
+          <%= f.text_area :title, placeholder:"Video Title" ,class: 'form-control'  %>
+          <span class="help-block">Video Title</span>
+        </div>
+        <div class="field">
+          <%= f.label :media %>
+          <br>
+          <%= f.file_field :media, class: 'form-control'  %>
+          <br>
+        </div>
+        <div class="actions">
+          <%= f.button 'Save', class: 'btn btn-primary',id: "saveBtn" %>
+        </div>
+        <% end %>
+  </fieldset>
+</div>
+
+
+
