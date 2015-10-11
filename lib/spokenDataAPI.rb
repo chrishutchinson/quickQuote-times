@@ -26,7 +26,7 @@ require 'nokogiri'
 class SpokenDataAPI
 
 
-  @@BASE_URL ="http://spokendata.com/api/"
+  @@BASE_URL ="https://spokendata.com/api/"
   #Setup the endpoints
   @@ENDPOINTS = {}
 
