@@ -3,7 +3,7 @@
 
 ## usage
 
-![](diagram overview in balsamiq)
+[see quickQuote on times repository](http://times.github.io/quickQuote)
 
 ## user manual 
 
