@@ -1,0 +1,148 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>quickQuote by times</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+     <link rel="stylesheet" href="stylesheets/video-quote.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+      <!-- Fancy box-->
+      <!-- Add jQuery library -->
+      <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+      <!-- Add mousewheel plugin (this is optional) -->
+      <script type="text/javascript" src="http://times.github.io/quickQuote//fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+
+      <!-- Add fancyBox -->
+      <link rel="stylesheet" href="http://times.github.io/quickQuote/fancybox/source/jquery.fancybox.css" type="text/css" media="screen" />
+      <script type="text/javascript" src="http://times.github.io/quickQuote//fancybox/source/jquery.fancybox.pack.js"></script>
+
+      <!-- Optionally add helpers - button, thumbnail and/or media -->
+      <link rel="stylesheet" href="http://times.github.io/quickQuote//fancybox/source/helpers/jquery.fancybox-buttons.css" type="text/css" media="screen" />
+      <script type="text/javascript" src="http://times.github.io/quickQuote//fancybox/source/helpers/jquery.fancybox-buttons.js"></script>
+      <script type="text/javascript" src="http://times.github.io/quickQuote//fancybox/source/helpers/jquery.fancybox-media.js"></script>
+
+      <link rel="stylesheet" href="http://times.github.io/quickQuote//fancybox/source/helpers/jquery.fancybox-thumbs.css" type="text/css" media="screen" />
+      <script type="text/javascript" src="http://times.github.io/quickQuote//fancybox/source/helpers/jquery.fancybox-thumbs.js"></script>
+  </head>
+  <body>
+  <script type="text/javascript">
+      $(document).ready(function() {
+          $(".fancybox-thumb").fancybox({
+              prevEffect	: 'none',
+              nextEffect	: 'none',
+              helpers	: {
+                  title	: {
+                      type: 'outside'
+                  },
+                  thumbs	: {
+                      width	: 50,
+                      height	: 50
+                  }
+              }
+          });
+      });
+  </script>
+    <div class="wrapper">
+      <header>
+        <h1 class="header"><a href="http://times.github.io/quickQuote/">quickQuote</a></h1>
+        <p class="header">A tool for journalists to easily find and add video quotes to news articles.</p>
+
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/times/quickQuote/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/times/quickQuote/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/times/quickQuote"  target="_blank">View On GitHub</a></li>
+       
+          <li ><a class="buttons github"  href="http://times.github.io/quickQuote/userManual.html" >User Manual</a></li>
+          <li><a class="buttons github"  href="http://www.rubydoc.info/github/times/quickQuote/master"  target="_blank">Documentation</a></li>
+        </ul>
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/times"  target="_blank">Times Digital</a> and <a class="header name" href="https://github.com/pietrop"  target="_blank">Pietro Passarelli</a></p>
+      </header>
+      <section>
+        <h1>
+<a id="what-is-quickquote" class="anchor" href="#what-is-quickquote" aria-hidden="true"><span class="octicon octicon-link"></span></a>What is quickQuote?</h1>
+<p>quickQuote takes the pain out of finding a video quote for your news article. It allows you to automatically generate interactive video quotes (such as the one below), without even having to touch an editing software or write a single word to transcribe the video.</p>
+
+<!--Video Quote Example-->
+<div class='video-quote' id='videoQuoteText-id-n'>
+  <span class='glyphicon glyphicon-play-circle'></span>
+
+  <blockquote>
+     <small>►  Watch Video </small><br><br>
+    A five billion dollar web site, I have so many websites, I have them all over the place. I hire people they do a web site, it costs me three dollars.
+    <br><cite id='authorVideoQuote'>Donald Trump</cite>
+  </blockquote></div><!-- video quote-->
+  <div  id='video-wrap-n' class='video-wrap video-wrap--closed'>
+    <video class=' video-js vjs-default-skin' id='video-quote' controls preload='auto' width='100%' height='auto' poster='' data-setup='{}'>
+      <source src='http://nuk-tnl-edtl-videoanalyser-dev.s3.amazonaws.com/videos/quotes/54/snippet_54.mp4' id='snippetURLVideo' type='video/mp4' />
+    </video>
+</div> <!--video wrap-->
+
+<!--end of example-->
+
+          <h2><a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>How does it work?</h2>
+
+            <ol>
+                <li><strong>Upload</strong> a video</li>
+                <li><strong>Select</strong> a quote (from the transcription automatically generated by the speech-to-text API)</li>
+                <li><strong>Preview</strong> video quote selection</li>
+                <li><strong>Export</strong> video quote selection</li>
+                <li><strong>Embed</strong> video quote in your article. </li>
+                <li><strong>Done.</strong></li>
+            </ol>
+
+          <a class="fancybox-thumb" rel="fancybox-thumb" href="img_userManual/upload.png" title="Upload a video">
+              <img src="img_userManual/upload.png" class="thumb" alt="" />
+          </a>
+          <a class="fancybox-thumb" rel="fancybox-thumb" href="img_userManual/search.png" title="Once the <a href='http://spokendata.com' target='_blank'>SpokenData</a> speech-to-text API has transcribed it for you, you can search it.The text and the video are in sync. ">
+              <img src="img_userManual/search.png" class="thumb" alt="" />
+          </a>
+          <a class="fancybox-thumb" rel="fancybox-thumb" href="img_userManual/select.png" title="Select a quote">
+              <img src="img_userManual/select.png" class="thumb" alt="" />
+          </a>
+          <a class="fancybox-thumb" rel="fancybox-thumb" href="img_userManual/preview.png" title="Preview a quote">
+              <img src="img_userManual/preview.png" class="thumb" alt="" />
+          </a>
+          <a class="fancybox-thumb" rel="fancybox-thumb" href="img_userManual/preview_dropdown.png" title="Click on quote">
+              <img src="img_userManual/preview_dropdown.png" class="thumb" alt="" />
+          </a>
+          <a class="fancybox-thumb" rel="fancybox-thumb" href="img_userManual/export_code.png" title="Export a quote, video is trimmed to selection">
+              <img src="img_userManual/export_code.png" class="thumb" alt="" />
+          </a>
+          <a class="fancybox-thumb" rel="fancybox-thumb" href="img_userManual/export_quote_w3.png" title="Embed a quote.">
+              <img src="img_userManual/export_quote_w3.png" class="thumb" alt="" />
+          </a>
+
+          <a class="fancybox-thumb" rel="fancybox-thumb" href="img_userManual/export_dropdown_w3.png" title="Embed a quote. Done.">
+              <img src="img_userManual/export_quote_w3.png" class="thumb" alt="" />
+          </a>
+
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a> Installation</h2>
+<p>Installation is detailed in the <a  href="http://www.rubydoc.info/github/times/quickQuote/master"  target="_blank">system manual</a> section of the project</p>
+<h2>
+<a id="documentation" class="anchor" href="#documentation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Documentation</h2>
+<p>Documentation can be found in the <a  href="http://www.rubydoc.info/github/times/quickQuote/master"  target="_blank">documentation</a> section of the project</p>
+<h2>
+<a id="Licence" class="anchor" href="#licence" aria-hidden="true"><span class="octicon octicon-link"></span></a>licence</h2>
+
+<p><a href="http://times.github.io/quickQuote">quickQuote</a> is licensed under the <a href="http://opensource.org/licenses/MIT"  target="_blank">MIT license</a>.</p>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="https://pages.github.com"  target="_blank">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+	    <script src="javascripts/quickQuote.js"></script>
+
+  </body>
+</html>
