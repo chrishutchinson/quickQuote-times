@@ -1,0 +1,36 @@
+.nav-bar-pages, .nav-bar-categories, .footer, h1, h2, h3, .banner-content, .postlist-item-cta, .stripe-payment-form-row, .page, .sidebar, .postlist-category, .curated-feature blockquote, .next-back-nav  {
+  font-family: arial, sans-serif;
+}
+
+body {
+  padding: 0;
+  color: #000;
+  font-family: arial, sans-serif;
+}
+.navbar, .sharebuttons, .single-post .postlist-item-cta, .footer .follow, #disclaimer-sticky {
+  display: none;
+}
+.postlist-item-heading a:after{
+  /*content:" (" attr(href) ") ";*/
+  font-size:0.7em;
+  font-weight:normal;
+}
+
+
+.banner-home {
+  background: none;
+  color: #000;
+}
+
+h1, .h1 {
+  font-size: 2em;
+}
+h2, .h2 {
+  font-size: 1.7em;
+}
+h3, .h3 {
+  font-size: 1.4em;
+}
+img {
+  max-width: 50%;
+}
